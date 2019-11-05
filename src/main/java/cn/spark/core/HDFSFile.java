@@ -7,16 +7,16 @@ import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 
 /**
- * 本地文件创建Rdd
+ * HDFS文件创建Rdd
  */
-public class LocalFile {
+public class HDFSFile {
 
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("LocalFile").setMaster("local");
+        SparkConf conf = new SparkConf().setAppName("LocalFile");
         JavaSparkContext javaSparkContext = new JavaSparkContext(conf);
 
         //针对本地文件创建rdd，testFile
-        JavaRDD<String> lines = javaSparkContext.textFile("src/spark.txt");
+        JavaRDD<String> lines = javaSparkContext.textFile("hdfs://spark1:9000/spark.txt");
 
         //统计文件字数
         JavaRDD<Integer> lineLength = lines.map(new Function<String, Integer>() {
