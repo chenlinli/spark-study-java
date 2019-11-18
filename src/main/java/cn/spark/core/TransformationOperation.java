@@ -204,10 +204,18 @@ public class TransformationOperation {
                 new Tuple2<Integer, String>(2,"jack"),
                 new Tuple2<Integer, String>(3,"tom")
         );
+//        List<Tuple2<Integer,Integer>> scoreList = Arrays.asList(
+//                new Tuple2<Integer, Integer>(1,100),
+//                new Tuple2<Integer, Integer>(2,77),
+//                new Tuple2<Integer, Integer>(3,88)
+//        );
         List<Tuple2<Integer,Integer>> scoreList = Arrays.asList(
                 new Tuple2<Integer, Integer>(1,100),
                 new Tuple2<Integer, Integer>(2,77),
-                new Tuple2<Integer, Integer>(3,88)
+                new Tuple2<Integer, Integer>(3,88),
+                new Tuple2<Integer, Integer>(3,50),
+                new Tuple2<Integer, Integer>(2,89),
+                new Tuple2<Integer, Integer>(1,78)
         );
         //并行化两个集合
         JavaPairRDD<Integer, String> stus = sc.parallelizePairs(stuList);
@@ -220,6 +228,14 @@ public class TransformationOperation {
             @Override
             public void call(Tuple2<Integer, Tuple2<String, Integer>> idStuScore) throws Exception {
                 System.out.println(idStuScore._1+":<"+idStuScore._2._1+","+idStuScore._2._2+">");
+                /**
+                 1:<leo,100>
+                 1:<leo,78>
+                 3:<tom,88>
+                 3:<tom,50>
+                 2:<jack,77>
+                 2:<jack,89>
+                 */
             }
         });
     }
@@ -249,6 +265,11 @@ public class TransformationOperation {
             @Override
             public void call(Tuple2<Integer, Tuple2<Iterable<String>, Iterable<Integer>>> t) throws Exception {
                 System.out.println(t._1+":<"+t._2._1+t._2._2+">");
+                /**
+                 1:<[leo][100, 78]>
+                 3:<[tom][88, 50]>
+                 2:<[jack][77, 89]>
+                 */
             }
         });
     }

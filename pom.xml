@@ -48,7 +48,12 @@
           <groupId>org.apache.spark</groupId>
           <artifactId>spark-streaming_${scala.version}</artifactId>
           <version>${spark.version}</version>
-          <scope>provided</scope>
+          <!--<scope>provided</scope>-->
+      </dependency>
+      <dependency>
+          <groupId>org.apache.spark</groupId>
+          <artifactId>spark-streaming-kafka-0-8_${scala.version}</artifactId>
+          <version>${spark.version}</version>
       </dependency>
 
       <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.spark/spark-mllib &ndash;&gt;-->
@@ -70,17 +75,14 @@
           <artifactId>hadoop-client</artifactId>
           <version>${hadoop.version}</version>
       </dependency>
-      <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka-0-8_${scala.version}</artifactId>
-          <version>${spark.version}</version>
-      </dependency>
+
 
       <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>${mysql.version}</version>
       </dependency>
+
 
 
   </dependencies>
